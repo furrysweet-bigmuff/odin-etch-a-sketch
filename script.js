@@ -6,10 +6,6 @@ function hover() {
     this.classList.add('hover');
 }
 
-function removeHover() {
-    this.classList.remove('hover');
-}
-
 function createDivs(num) {
     let bgHorizontalPosition;
     let bgVerticalPosition;
@@ -29,7 +25,6 @@ function createDivs(num) {
     let divs = document.querySelectorAll('#container div');
 
     divs.forEach(div => div.addEventListener('mouseover', hover));
-    divs.forEach(div => div.addEventListener('mouseout', removeHover));
 }
 
 function restart() {
