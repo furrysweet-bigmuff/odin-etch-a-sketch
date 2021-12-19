@@ -1,0 +1,25 @@
+#container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 960px;
+    /* background: url("jean.jpeg"); */
+}
+
+#container div {
+    /* flex-basis: 50px; */
+    /* height: 50px; */
+    border: 1px solid black;
+    box-sizing: border-box;
+    /* background-color: #fff; */
+    transition: all ease-in-out 0.7s;
+    background-size: 960px auto;
+    background-image: url("jean.jpeg");
+    background-repeat: no-repeat;
+
+}
+
+#container div.hover {
+    background-color: orange;
+}
