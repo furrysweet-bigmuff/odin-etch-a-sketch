@@ -5,11 +5,17 @@ const btnPicker = document.getElementById('colorPicker');
 const rangeSlider = document.getElementById('range');
 const rangeLabel = document.getElementById('rangeLabel');
 const btnReset = document.getElementById('reset');
+const btnFile = document.getElementById('file');
 const containerWidth = container.offsetWidth;
+let image = document.getElementById('image');
 let currentColor = '#000';
 let randomise = false;
 
 function hover() {
+    randomise ? this.style.backgroundColor = getRandomColor() : this.style.backgroundColor = currentColor;
+}
+
+function imageHover() {
     randomise ? this.style.backgroundColor = getRandomColor() : this.style.backgroundColor = currentColor;
 }
 
@@ -22,26 +28,27 @@ function getRandomColor(){
       return color;
 }
 
-// function createDivs(num) {
-//     let bgHorizontalPosition;
-//     let bgVerticalPosition;
-//     // высчитываем bg position для вертикального значения
-//     for (let i = 0; i < num; i++) {
-//         bgHorizontalPosition = 0;
-//         bgVerticalPosition = (containerWidth / num) * i;
-//         // высчитываем bg position для горизонтального значения
-//         for (let n = 0; n < num; n++) {
-//             bgHorizontalPosition = (containerWidth / num) * n;
-//             let newDiv = document.createElement('div');
-//             newDiv.style.cssText = 'width: ' + containerWidth / num + 'px; height: ' + containerWidth / num + 
-//             'px; background-position: -' + bgHorizontalPosition + 'px -' + bgVerticalPosition + 'px;';
-//             container.appendChild(newDiv);
-//         }
-//     }
-//     let divs = document.querySelectorAll('#container div');
+function createImageDivs(num, bgImg) {
+    container.replaceChildren();
+    let bgHorizontalPosition;
+    let bgVerticalPosition;
+    // высчитываем bg position для вертикального значения
+    for (let i = 0; i < num; i++) {
+        bgHorizontalPosition = 0;
+        bgVerticalPosition = (containerWidth / num) * i;
+        // высчитываем bg position для горизонтального значения
+        for (let n = 0; n < num; n++) {
+            bgHorizontalPosition = (containerWidth / num) * n;
+            let newDiv = document.createElement('div');
+            newDiv.style.cssText = 'width: ' + containerWidth / num + 'px; height: ' + containerWidth / num + 
+            'px; background-position: -' + bgHorizontalPosition + 'px -' + bgVerticalPosition + 'px; background-image: url(' + bgImg + ');';
+            container.appendChild(newDiv);
+        }
+    }
+    let divs = document.querySelectorAll('#container div');
 
-//     divs.forEach(div => div.addEventListener('mouseover', hover));
-// }
+    divs.forEach(div => div.addEventListener('mouseover', imageHover));
+}
 
 function createDivs(num) {
     container.replaceChildren();
@@ -76,6 +83,12 @@ rangeSlider.addEventListener('input', function() {
     createDivs(this.value);
 });
 
+btnFile.addEventListener('change', function(event) {
+    currentColor = '#000';
+    randomise = false;
+    let imageUrl = URL.createObjectURL(event.target.files[0]);
+    createImageDivs(16, imageUrl);
+});
 
 createDivs(16);
 
