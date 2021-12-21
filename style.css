@@ -71,6 +71,7 @@ h1 {
     box-sizing: border-box;
     background-color: #fff;
     transition: all 0.5s;
+    border: 1px solid grey;
 }
 
 #container.imageBg div {
@@ -98,6 +99,7 @@ h1 {
     opacity: 0;
 } */
 
+label,
 button {
     padding: 10px 0 5px;
     margin-bottom: 30px;
@@ -108,6 +110,11 @@ button {
     border-radius: 5px;
     border: 0;
     transition: all 1s;
+    text-align: center;
+}
+
+label {
+    margin-bottom: 0;
 }
 
 button:hover {
@@ -119,5 +126,9 @@ button:hover {
 }
 
 input[type=color] {
-    display: none;
+    margin-bottom: 30px;
+    width: 0;
+    height: 0;
+    opacity: 0;
 }
+

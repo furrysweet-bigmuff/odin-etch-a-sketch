@@ -1,16 +1,16 @@
 const container = document.getElementById('container');
-const btnBlack = document.querySelector('#black');
-const btnRainbow = document.querySelector('#rainbow');
+const btnBlack = document.getElementById('black');
+const btnRainbow = document.getElementById('rainbow');
+const btnPicker = document.getElementById('colorPicker');
+const rangeSlider = document.getElementById('range');
+const rangeLabel = document.getElementById('rangeLabel');
+const btnReset = document.getElementById('reset');
 const containerWidth = container.offsetWidth;
 let currentColor = '#000';
 let randomise = false;
 
 function hover() {
-    if (randomise) {
-        this.style.backgroundColor = getRandomColor();
-    } else {
-        this.style.backgroundColor = currentColor;
-    }
+    randomise ? this.style.backgroundColor = getRandomColor() : this.style.backgroundColor = currentColor;
 }
 
 function getRandomColor(){
@@ -44,6 +44,7 @@ function getRandomColor(){
 // }
 
 function createDivs(num) {
+    container.replaceChildren();
     for (let i = 0; i < num * num; i++) {
         let newDiv = document.createElement('div');
         newDiv.style.cssText = 'width: ' + containerWidth / num + 'px; height: ' + containerWidth / num + 'px;';
@@ -55,12 +56,6 @@ function createDivs(num) {
     divs.forEach(div => div.addEventListener('mouseover', hover));
 }
 
-function restart() {
-    container.replaceChildren();
-    let num = prompt('Enter value below 100')
-    createDivs(num);
-}
-
 btnRainbow.addEventListener('click', function() {
     randomise = true;
 });
@@ -68,6 +63,19 @@ btnBlack.addEventListener('click', function() {
     randomise = false;
     currentColor = '#000';
 });
+btnPicker.addEventListener('input', function() {
+    randomise = false;
+    currentColor = this.value;
+});
+btnReset.addEventListener('click', function() {
+    let divs = document.querySelectorAll('#container div');
+    divs.forEach(div => div.style.backgroundColor = "white");
+});
+rangeSlider.addEventListener('input', function() {
+    rangeLabel.textContent = this.value + "x" + this.value;
+    createDivs(this.value);
+});
+
 
 createDivs(16);
 
