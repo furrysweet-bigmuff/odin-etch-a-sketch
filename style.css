@@ -51,8 +51,6 @@ h1 {
     align-items: center;
     width: 150px;
     height: 500px;
-    /* background-color: black; */
-    /* border: 1px solid black; */
 }
 
 #container {
@@ -63,7 +61,6 @@ h1 {
     width: 500px;
     height: 500px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    /* background: url("retro.jpeg"); */
 }
 
 #container div {
@@ -74,15 +71,18 @@ h1 {
     border: 1px solid grey;
 }
 
+#container div.hover {
+    background-color: #000;
+}
+
 #container.imageBg div {
-    background-size: 500px auto;
-    background-image: url("retro.jpeg");
+    background-size: 500px 500px;
     background-repeat: no-repeat;
     -webkit-transition: background-image 0.2s ease-in-out;
     transition: background-image 0.2s ease-in-out;
 } 
 
-/* #container div:before {
+#container.imageBg div:before {
     content: '';
     position: absolute;
     top: 0;
@@ -92,12 +92,11 @@ h1 {
     background-color: #fff;
     opacity: 100%;
     transition: all 0.7s;
-
 }
 
-#container div.hover:before {
+#container.imageBg div.hover:before {
     opacity: 0;
-} */
+}
 
 label,
 button {
@@ -117,12 +116,25 @@ label {
     margin-bottom: 0;
 }
 
+label:hover,
 button:hover {
     transform: scale(1.1);
+    background-color: #000;
+    color: #fff;
 }
 
-#container div.hover {
-    background-color: #000;
+label[for=range]:hover {
+    transform: none;
+    background-color: #fff;
+    color: #000;
+} 
+
+input[type=file] {
+    display: none;
+}
+
+input[type=range] {
+    margin: 10px 0 30px;
 }
 
 input[type=color] {
@@ -130,9 +142,4 @@ input[type=color] {
     width: 0;
     height: 0;
     opacity: 0;
-}
-
-img {
-    width: 300px;
-    height: 300px;
 }
